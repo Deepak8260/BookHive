@@ -24,10 +24,10 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html',
-                           book_name=list(df_final['Title'].values[:100]),
-                           author=list(df_final['Author'].values[:100]),
-                           image=list(df_final['Image URL'].values[:100]),
-                           category=list(df_final['Category'].values[:100]) if 'Category' in df_final.columns else ["Unknown"] * len(df_final))
+                           book_name=list(df_final['Title'].values[:500]),
+                           author=list(df_final['Author'].values[:500]),
+                           image=list(df_final['Image URL'].values[:500]),
+                           category=list(df_final['Category'].values[:500]) if 'Category' in df_final.columns else ["Unknown"] * len(df_final))
 
 @app.route('/recommend')
 def recommend_ui():
