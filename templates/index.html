@@ -88,143 +88,38 @@
         display: flex;
         justify-content: center;
       }
-      .bi {
-        display: none;
 
-        fill: white;
-      }
-      /* responsive navbar */
-      @media (max-width: 740px) {
-        .navbar-brand {
-          font-size: 22px;
-        }
-        .links {
-          font-size: 19px;
-        }
-      }
-      @media (max-width: 670px) {
-        .navbar-brand {
-          font-size: 20px;
-        }
-        .links {
-          font-size: 17px;
-        }
-      }
-      @media (max-width: 620px) {
-        .navbar-brand {
-          font-size: 18px;
-        }
-        .links {
-          font-size: 15px;
-        }
-      }
-      @media (max-width: 580px) {
-        .navbar-brand {
-          font-size: 20px;
-        }
-        .links span {
-          display: none; /* Hide text */
-        }
-
-        .bi {
-          display: block;
-        }
-      }
-      @media (max-width: 505px) {
-        .navbar-brand {
-          font-size: 18px;
-        }
-        .links span {
-          display: none; /* Hide text */
-        }
-
-        .bi {
-          display: block;
-        }
-        .bi-house-door {
-          width: 22px;
-          height: 22px;
-        }
-        .bi-check-circle,
-        .bi-telephone {
-          width: 22px;
-          height: 22px;
-        }
-      }
-      @media (max-width: 490px) {
-        .navbar {
-          padding: 7px 15px;
-          margin: 7px 10px;
-        }
-        .navbar-brand {
-          font-size: 17px;
-        }
-
-        .bi-house-door,
-        .bi-check-circle,
-        .bi-telephone {
-          width: 20px;
-          height: 20px;
-        }
-        .xyz {
-          margin-top: 5px;
-        }
-      }
-      @media (max-width: 385px) {
-        .navbar-brand {
-          font-size: 15px;
-        }
-        .bi-house-door,
-        .bi-check-circle,
-        .bi-telephone {
-          width: 18px;
-          height: 18px;
-        }
-        .navbar {
-          padding: 4px 10px;
-          margin: 4px 6px;
-        }
-      }
       /* Container styling */
       /*=============== GOOGLE FONTS ===============*/
 
       /*========== Responsive typography ==========*/
 
       /*=============== CARD ===============*/
-      .container {
-        display: grid;
-        place-items: center;
-        margin-inline: 1.5rem;
-        padding-block: 5rem;
-      }
-
       .card__container {
         display: grid;
-        grid-template-columns: repeat(
-          auto-fit,
-          minmax(343px, max-content)
-        ); /* Adjust dynamically */
-        gap: 3rem; /* Space between cards */
-        justify-content: center;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px; /* Increased gap for better spacing */
+        justify-content: space-around;
+        margin: 20px auto;
       }
 
-      /* Card layout */
       .card__article {
-        position: relative;
-        overflow: visible;
+        background: white;
+        width: 300px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        position: relative; /* Needed for absolute positioning of card__data */
+        overflow: hidden;
       }
 
       .card__img {
-        width: 343px;
-
-        height: 450px;
-        border-radius: 1.5rem;
+        max-width: 100%;
+        border-radius: 8px;
       }
 
-      /* Card Data */
       .card__data {
-        width: 300px;
-
+        width: 280px;
         background-color: white;
         padding: 1.5rem 2rem;
         box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.15);
@@ -245,29 +140,24 @@
       }
 
       .card__title {
-        font-size: 24px;
+        font-size: 18px;
         font-weight: 500;
         color: black;
         margin-bottom: 0.75rem;
-        display: block;
-        width: 100%;
-        white-space: nowrap;
-        overflow-x: auto; /* Enables horizontal scrolling */
-        scrollbar-width: none; /* Optional: Makes scrollbar less intrusive */
-        cursor: grab; /* Indicates the user can scroll */
-        padding-bottom: 5px; /* Ensures scrollbar is not cut off */
-      }
-      .card__title::-webkit-scrollbar {
-        display: none;
       }
 
-      .card__author {
+      .card__button {
+        text-decoration: none;
         font-size: 18px;
         font-weight: 500;
         color: black;
       }
 
-      /* Hover Effects */
+      .card__button:hover {
+        text-decoration: underline;
+      }
+
+      /* Hover animations */
       .card__article:hover .card__data {
         animation: show-data 1s forwards;
         opacity: 1;
@@ -283,10 +173,10 @@
       }
 
       .card__article:not(:hover) .card__data {
-        animation: remove-data 0.8s forwards;
+        animation: remove-data 1s forwards;
       }
 
-      /* Card Animations */
+      /* Keyframes */
       @keyframes show-data {
         50% {
           transform: translateY(-10rem);
@@ -310,8 +200,7 @@
           transform: translateY(-10rem);
         }
         100% {
-          transform: translateY(3rem);
-          visibility: hidden;
+          transform: translateY(0.5rem);
         }
       }
 
@@ -322,34 +211,6 @@
         }
         50% {
           overflow: hidden;
-        }
-      }
-
-      /*=============== RESPONSIVE DESIGN ===============*/
-      /* For small devices */
-      @media screen and (max-width: 340px) {
-        .container {
-          margin-inline: 1rem;
-        }
-
-        .card__data {
-          width: 250px;
-          padding: 1rem;
-        }
-      }
-
-      /* For medium devices */
-      @media screen and (min-width: 768px) {
-        .card__container {
-          grid-template-columns: repeat(2, 1fr);
-          column-gap: 1.5rem;
-        }
-      }
-
-      /* For large devices */
-      @media screen and (min-width: 1024px) {
-        .card__container {
-          grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
         }
       }
       .pagination {
@@ -379,65 +240,23 @@
       .pagination button:hover:not(:disabled) {
         background-color: #6e4a32;
       }
+      #pageInfo {
+        color: white;
+      }
     </style>
   </head>
-  <body loading="lazy">
+  <body>
     <nav class="navbar">
       <a class="navbar-brand" href="/">BOOKHIVE</a>
       <ul class="xyz">
         <li>
-          <a href="/" class="links">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="currentColor"
-              class="bi bi-house-door"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"
-              />
-            </svg>
-            <span>Home</span></a
-          >
+          <a href="/" class="links"> Home</a>
         </li>
         <li>
-          <a href="/recommend" class="links"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="23"
-              height="23"
-              fill="currentColor"
-              class="bi bi-check-circle"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"
-              />
-              <path
-                d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"
-              />
-            </svg>
-            <span>Recommend </span></a
-          >
+          <a href="/recommend" class="links">Recommend</a>
         </li>
         <li>
-          <a href="/contact" class="links"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="23"
-              height="23"
-              fill="currentColor"
-              class="bi bi-telephone"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"
-              />
-            </svg>
-            <span>Contact</span></a
-          >
+          <a href="/contact" class="links">Contact</a>
         </li>
       </ul>
     </nav>
