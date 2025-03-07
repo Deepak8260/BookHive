@@ -11,6 +11,10 @@
     />
 
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+      /*=============== VARIABLES CSS ===============*/
+
       body {
         background-image: url("static/ra.jpg");
         background-size: cover;
@@ -181,76 +185,199 @@
           margin: 4px 6px;
         }
       }
-      .main-div {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
+      /* Container styling */
+      /*=============== GOOGLE FONTS ===============*/
+
+      /*========== Responsive typography ==========*/
+
+      /*=============== CARD ===============*/
+      .container {
+        display: grid;
+        place-items: center;
+        margin-inline: 1.5rem;
+        padding-block: 5rem;
+      }
+
+      .card__container {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(343px, max-content)
+        ); /* Adjust dynamically */
+        gap: 3rem; /* Space between cards */
         justify-content: center;
-        margin-top: 25px;
-        margin-bottom: 20px;
       }
 
-      .card {
+      /* Card layout */
+      .card__article {
         position: relative;
-        display: inline-block;
-        margin-bottom: 30px;
-        margin-right: 10px;
-        overflow: hidden;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        overflow: visible;
       }
 
-      .card img {
-        display: block;
-        height: 400px;
+      .card__img {
+        width: 343px;
+
+        height: 450px;
+        border-radius: 1.5rem;
+      }
+
+      /* Card Data */
+      .card__data {
         width: 300px;
-        border-radius: 10px 10px 0 0;
-      }
 
-      .info {
+        background-color: white;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.15);
+        border-radius: 1rem;
         position: absolute;
-        bottom: -185px; /* Initially hidden below the card */
+        bottom: -9rem;
         left: 0;
-        background-color: #a1662fe0;
-        color: white;
-        padding: 10px 20px;
+        right: 0;
+        margin-inline: auto;
+        opacity: 0;
+        transition: opacity 1s 1s;
+      }
+
+      .card__description {
+        display: block;
+        font-size: 18px;
+        margin-bottom: 0.25rem;
+      }
+
+      .card__title {
+        font-size: 24px;
+        font-weight: 500;
+        color: black;
+        margin-bottom: 0.75rem;
+        display: block;
         width: 100%;
-        text-align: center;
-        transition: transform 0.3s ease, bottom 0.3s ease;
+        white-space: nowrap;
+        overflow-x: auto; /* Enables horizontal scrolling */
+        scrollbar-width: none; /* Optional: Makes scrollbar less intrusive */
+        cursor: grab; /* Indicates the user can scroll */
+        padding-bottom: 5px; /* Ensures scrollbar is not cut off */
+      }
+      .card__title::-webkit-scrollbar {
+        display: none;
       }
 
-      .card:hover .info {
-        bottom: 0; /* Lift up to align with the card */
+      .card__author {
+        font-size: 18px;
+        font-weight: 500;
+        color: black;
       }
 
-      .rating-icon {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
-        background-color: #7c001f;
-        color: white;
+      /* Hover Effects */
+      .card__article:hover .card__data {
+        animation: show-data 1s forwards;
+        opacity: 1;
+        transition: opacity 0.3s;
+      }
+
+      .card__article:hover {
+        animation: remove-overflow 2s forwards;
+      }
+
+      .card__article:not(:hover) {
+        animation: show-overflow 2s forwards;
+      }
+
+      .card__article:not(:hover) .card__data {
+        animation: remove-data 0.8s forwards;
+      }
+
+      /* Card Animations */
+      @keyframes show-data {
+        50% {
+          transform: translateY(-10rem);
+        }
+        100% {
+          transform: translateY(-7rem);
+        }
+      }
+
+      @keyframes remove-overflow {
+        to {
+          overflow: initial;
+        }
+      }
+
+      @keyframes remove-data {
+        0% {
+          transform: translateY(-7rem);
+        }
+        50% {
+          transform: translateY(-10rem);
+        }
+        100% {
+          transform: translateY(3rem);
+          visibility: hidden;
+        }
+      }
+
+      @keyframes show-overflow {
+        0% {
+          overflow: initial;
+          pointer-events: none;
+        }
+        50% {
+          overflow: hidden;
+        }
+      }
+
+      /*=============== RESPONSIVE DESIGN ===============*/
+      /* For small devices */
+      @media screen and (max-width: 340px) {
+        .container {
+          margin-inline: 1rem;
+        }
+
+        .card__data {
+          width: 250px;
+          padding: 1rem;
+        }
+      }
+
+      /* For medium devices */
+      @media screen and (min-width: 768px) {
+        .card__container {
+          grid-template-columns: repeat(2, 1fr);
+          column-gap: 1.5rem;
+        }
+      }
+
+      /* For large devices */
+      @media screen and (min-width: 1024px) {
+        .card__container {
+          grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+        }
+      }
+      .pagination {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+        margin-top: 20px;
+        gap: 10px;
       }
 
-      .rating-icon:hover {
-        background-color: #333;
-        color: transparent;
-      }
-
-      .rating-icon:hover::before {
-        content: attr(data-rating);
-        position: absolute;
+      .pagination button {
+        background-color: #986a4c;
         color: white;
+        padding: 10px 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
         font-size: 16px;
+        transition: background 0.3s;
+      }
+
+      .pagination button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+
+      .pagination button:hover:not(:disabled) {
+        background-color: #6e4a32;
       }
     </style>
   </head>
@@ -315,37 +442,69 @@
       </ul>
     </nav>
 
-    <div
-      style="
-        margin-left: 40px;
-        margin-bottom: 20px;
-        width: 1438px;
-        background-color: rgb(0, 0, 0, 0.4);
-        border-radius: 15px;
-        height: 250px;
-      "
-    >
-      <img src="../static/herosection.png" alt="" style="width: 1430px" />
-    </div>
-
     <div class="container">
-      <div class="col-12">
-        <h1 class="text-white text-center" style="font-size: 50px">
-          Top 50 Books
-        </h1>
-      </div>
-      <div class="main-div">
+      <div class="card__container">
         {% for i in range(book_name|length) %}
-        <div class="card">
-          <img src="{{ image[i] }}" alt="Book Cover" />
-          <div class="info">
-            <h5 class="text-highlight">{{ book_name[i] }}</h5>
-            <p>By {{ author[i] }}</p>
-            <p>Category: {{ category[i] }}</p>
+        <article class="card__article">
+          <img
+            src="{{ image[i] }}"
+            alt="Book Cover"
+            class="card__img"
+            width="343px"
+            height="450px"
+          />
+          <div class="card__data">
+            <h2 class="card__title">{{ book_name[i] }}</h2>
+            <p class="card__author">By {{ author[i] }}</p>
+            <span class="card__description">Category: {{ category[i] }}</span>
           </div>
-        </div>
+        </article>
         {% endfor %}
       </div>
     </div>
+    <div class="pagination">
+      <button id="prevPage">Previous</button>
+      <span id="pageInfo"></span>
+      <button id="nextPage">Next</button>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const booksPerPage = 20; // Show 20 books per page
+        let currentPage = 1;
+        const books = document.querySelectorAll(".card__article"); // Select all book cards
+        const totalPages = Math.ceil(books.length / booksPerPage);
+        const prevButton = document.getElementById("prevPage");
+        const nextButton = document.getElementById("nextPage");
+        const pageInfo = document.getElementById("pageInfo");
+
+        function showPage(page) {
+          books.forEach((book, index) => {
+            book.style.display =
+              index >= (page - 1) * booksPerPage && index < page * booksPerPage
+                ? "block"
+                : "none";
+          });
+          pageInfo.textContent = `Page ${page} of ${totalPages}`;
+          prevButton.disabled = page === 1;
+          nextButton.disabled = page === totalPages;
+        }
+
+        prevButton.addEventListener("click", function () {
+          if (currentPage > 1) {
+            currentPage--;
+            showPage(currentPage);
+          }
+        });
+
+        nextButton.addEventListener("click", function () {
+          if (currentPage < totalPages) {
+            currentPage++;
+            showPage(currentPage);
+          }
+        });
+
+        showPage(currentPage);
+      });
+    </script>
   </body>
 </html>
