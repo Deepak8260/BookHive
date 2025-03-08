@@ -26,6 +26,7 @@
         text-align: center;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         margin: 100px auto;
+        margin-bottom: 0;
       }
 
       .glass-box h1 {
@@ -231,8 +232,25 @@
     </div>
 
     <div class="container">
+      {% if data %}
+      <h2 class="text-white">Result</h2>
       <div class="row">
-        {% if data %} {% for book in data %}
+        <div class="col-md-3">
+          <div class="card">
+            <img src="{{ data[0][3] }}" alt="Book Image" class="card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title">{{ data[0][0] }}</h5>
+              <p class="card-text">By {{ data[0][1] }}</p>
+              <p class="card-text">Category: {{ data[0][2] }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% if data|length > 1 %}
+      <h2 class="text-white">Recommendations</h2>
+      <div class="row">
+        {% for book in data[1:6] %}
         <div class="col-md-3">
           <div class="card">
             <img src="{{ book[3] }}" alt="Book Image" class="card-img-top" />
@@ -243,8 +261,9 @@
             </div>
           </div>
         </div>
-        {% endfor %} {% endif %}
+        {% endfor %}
       </div>
+      {% endif %} {% endif %}
     </div>
     {% endif %}
 
