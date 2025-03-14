@@ -71,8 +71,18 @@ def contact():
         name = request.form.get('name')
         email = request.form.get('email')
         message = request.form.get('message')
-        insert_contact(name, email, message)
-        return render_template('contact.html', success="Your message has been sent successfully!")
+
+        # Ensure all fields are filled
+        if not name or not email or not message:
+            return render_template('contact.html', error="All fields are required!")
+
+        # Insert into SQL Server
+        try:
+            insert_contact(name, email, message)
+            return render_template('contact.html', success="Your message has been sent successfully!")
+        except Exception as e:
+            return render_template('contact.html', error=f"Database error: {e}")
+
     return render_template('contact.html')
 
 if __name__ == '__main__':
