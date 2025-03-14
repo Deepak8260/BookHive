@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: my-python-app
+    name: bookhive-new-app
     env: python
     repo: https://github.com/Deepak8260/BookHive.git
     branch: main
