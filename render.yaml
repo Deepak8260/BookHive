@@ -13,7 +13,7 @@ services:
         sync: false  # Manually set in Render Dashboard
       - key: DB_USER
         sync: false  # Manually set in Render Dashboard
-      - key: DB_PASS
+      - key: DB_PASSWORD
         sync: false  # Manually set in Render Dashboard
       - key: DB_NAME
         sync: false  # Manually set in Render Dashboard
