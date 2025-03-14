@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from database import insert_contact
 from sklearn.metrics.pairwise import cosine_similarity
+import os
 
 # Load the pre-trained model
 model_data = pkl.load(open("model.pkl", "rb"))
@@ -86,4 +87,5 @@ def contact():
     return render_template('contact.html')
 
 if __name__ == '__main__':
-    app.run(debug=True,host='127.0.0.1',port=5001)
+    port = int(os.getenv("PORT", 5001))  # Render assigns PORT; use 5001 locally
+    app.run(debug=True, host="0.0.0.0", port=port)

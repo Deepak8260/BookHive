@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: my-python-app
+    env: python
+    repo: https://github.com/Deepak8260/BookHive.git
+    branch: main
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn -b 0.0.0.0:$PORT app:app"  # Use Render's assigned PORT
+    envVars:
+      - key: PORT
+        sync: false  # Manually set in Render Dashboard
+      - key: DB_HOST
+        sync: false  # Manually set in Render Dashboard
+      - key: DB_USER
+        sync: false  # Manually set in Render Dashboard
+      - key: DB_PASS
+        sync: false  # Manually set in Render Dashboard
+      - key: DB_NAME
+        sync: false  # Manually set in Render Dashboard
